@@ -121,6 +121,36 @@
   .feature-card.hidden {
     left: -100%;
   }
+
+  /* Add Experience and Add Skill Buttons */
+  #add-experience-button,
+  #add-skill-button {
+    margin-top: 1rem;
+  }
+
+  /* Add Experience Button */
+  #add-experience-button {
+    border: 1px solid #007bff;
+    color: #007bff;
+    background-color: transparent;
+  }
+
+  #add-experience-button:hover {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  /* Add Skill Button */
+  #add-skill-button {
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    background-color: transparent;
+  }
+
+  #add-skill-button:hover {
+    background-color: #6c757d;
+    color: #fff;
+  }
 </style>
 
 <body>
@@ -258,45 +288,72 @@
     });
   });
 
-  function addExperience() {
-    // Select the container element where the experience form elements should be added
-    const container = document.querySelector('.experience-container');
+  function addExperience(e) {
+    e.preventDefault();
 
-    // Create a new form element
-    const form = document.createElement('form');
-    form.classList.add('experience-form');
+    const experienceContainer = document.getElementById('experience-container');
+    const experienceTemplate = document.getElementById('experience-template').innerHTML;
 
-    // Create the form fields
-    const companyInput = document.createElement('input');
-    companyInput.type = 'text';
-    companyInput.name = 'company';
-    companyInput.placeholder = 'Company';
-    form.appendChild(companyInput);
-
-    const positionInput = document.createElement('input');
-    positionInput.type = 'text';
-    positionInput.name = 'position';
-    positionInput.placeholder = 'Position';
-    form.appendChild(positionInput);
-
-    const startDateInput = document.createElement('input');
-    startDateInput.type = 'text';
-    startDateInput.name = 'start_date';
-    startDateInput.placeholder = 'Start Date';
-    form.appendChild(startDateInput);
-
-    const endDateInput = document.createElement('input');
-    endDateInput.type = 'text';
-    endDateInput.name = 'end_date';
-    endDateInput.placeholder = 'End Date';
-    form.appendChild(endDateInput);
-
-    // Add the form to the container
-    container.appendChild(form);
+    experienceContainer.insertAdjacentHTML('beforeend', experienceTemplate);
   }
 
-  const addExperienceButton = document.querySelector('.add-experience');
-  addExperienceButton.addEventListener('click', addExperience);
+  // Show "saved" instead of the input fields
+  lastExperience.querySelectorAll('.form-control-plaintext').forEach(p => {
+    p.innerHTML = 'Saved';
+  });
+
+
+  function addEducation(event) {
+    event.preventDefault();
+    const educationContainer = document.getElementById('education-container');
+    const educationTemplate = document.getElementById('education-template').innerHTML;
+
+    // Remove the input fields from the previous education
+    const previousEducation = document.querySelector('.education-fields');
+    if (previousEducation) {
+      previousEducation.innerHTML = '<span class="saved-fields">Saved</span>';
+    }
+
+    // Add the new education field to the form
+    educationContainer.insertAdjacentHTML('beforeend', educationTemplate);
+  }
+
+  // Show "saved" instead of the input fields
+  lastEducation.querySelectorAll('.form-control-plaintext').forEach(p => {
+    p.innerHTML = 'Saved';
+  });
+
+  function removeEducation(event) {
+    const educationContainer = document.getElementById('education-container');
+    const educationField = event.target.parentNode;
+    educationContainer.removeChild(experienceField);
+  }
+
+  function addSkill(e) {
+    e.preventDefault();
+    const skillContainer = document.getElementById('skill-container');
+    const skillTemplate = document.getElementById('skill-template').innerHTML;
+
+    // Remove the input fields from the previous skill
+    const previousSkill = document.querySelector('.skill-fields');
+    if (previousSkill) {
+      previousSkill.innerHTML = '<span class="saved-fields">Saved</span>';
+    }
+
+    // Add the new skill field to the form
+    skillContainer.insertAdjacentHTML('beforeend', skillTemplate);
+  }
+
+  // Show "saved" instead of the input fields
+  lastSkill.querySelectorAll('.form-control-plaintext').forEach(p => {
+    p.innerHTML = 'Saved';
+  });
+
+  function removeSkill(event) {
+    const skillContainer = document.getElementById('skill-container');
+    const skillField = event.target.parentNode;
+    skillContainer.removeChild(skillField);
+  }
 </script>
 
 </html>
