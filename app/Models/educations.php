@@ -12,6 +12,7 @@ class educations extends Model
     protected $table = 'educations';
 
     protected $fillable = [
+        'resume_id',
         'school',
         'degree',
         'field_of_study',

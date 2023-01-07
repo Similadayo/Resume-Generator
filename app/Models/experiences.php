@@ -12,6 +12,7 @@ class experiences extends Model
     protected $table = 'experiences';
 
     protected $fillable = [
+        'resume_id',
         'company',
         'position',
         'description',

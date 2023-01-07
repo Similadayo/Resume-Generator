@@ -323,12 +323,6 @@
     p.innerHTML = 'Saved';
   });
 
-  function removeEducation(event) {
-    const educationContainer = document.getElementById('education-container');
-    const educationField = event.target.parentNode;
-    educationContainer.removeChild(experienceField);
-  }
-
   function addSkill(e) {
     e.preventDefault();
     const skillContainer = document.getElementById('skill-container');
@@ -348,12 +342,6 @@
   lastSkill.querySelectorAll('.form-control-plaintext').forEach(p => {
     p.innerHTML = 'Saved';
   });
-
-  function removeSkill(event) {
-    const skillContainer = document.getElementById('skill-container');
-    const skillField = event.target.parentNode;
-    skillContainer.removeChild(skillField);
-  }
 </script>
 
 </html>

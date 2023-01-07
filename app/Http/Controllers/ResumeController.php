@@ -45,7 +45,9 @@ class ResumeController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'website' => $request->website,
             'address' => $request->address,
+            'summary' => $request->summary,
         ]);
     
         // Create education entries for the resume
@@ -73,16 +75,16 @@ class ResumeController extends Controller
         }
     
         // Create skill entries for the resume
-        foreach ($request->skills as $skill) {
-            $skill = skills::create([
-                'resume_id' => $resume->id,
-                'name' => $skill['name'],
-                'level' => $skill['level'],
-            ]);
+            foreach ($request->skills as $skill) {
+                skills::create([
+                    'resume_id' => $resume->id,
+                    'name' => $skill['name'],
+                    'level' => $skill['level'],
+                ]);
         }
     
         // Redirect to the show view
-        return redirect()->route('resumes.show', $resume->id);
+        return redirect('/resumes')->with('message', 'Product Added Successfully');
     
     }
 

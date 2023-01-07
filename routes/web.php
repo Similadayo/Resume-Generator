@@ -25,5 +25,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::controller(ResumeController::class)->group(function(){
     Route::get('/resumes', 'index')->middleware('auth');
     Route::get('/resumes/create', 'create')->middleware('auth');
+    Route::post('/resumes', 'store')->middleware('auth');
 });
 
